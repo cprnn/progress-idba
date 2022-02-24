@@ -1,0 +1,71 @@
+17:32:11 Looking for *.p in C:\cursoprogress\Fontes
+Compiling alteracaopedido.p
+Unknown or ambiguous table Pedido. (725)
+** C:\cursoprogress\Fontes\alteracaopedido.p Nao entendi a linha 1. (196)
+Compiling alteracaopedido_v2.p
+Unknown or ambiguous table Pedido. (725)
+** C:\cursoprogress\Fontes\alteracaopedido_v2.p Nao entendi a linha 1. (196)
+Compiling alteracaopedido_v3.p
+Unknown or ambiguous table Pedido. (545)
+** C:\cursoprogress\Fontes\alteracaopedido_v3.p Nao entendi a linha 1. (196)
+Compiling browse.p
+Unknown or ambiguous table customer. (725)
+** C:\cursoprogress\Fontes\browse.p Nao entendi a linha 1. (196)
+Compiling buffer.p
+Unknown or ambiguous table customer. (545)
+** C:\cursoprogress\Fontes\buffer.p Nao entendi a linha 3. (196)
+Compiling buttons.p
+Compiling chama_inclusao_pedido_v01.p
+Compiling chama_inclusao_pedido_v02.p
+Unknown or ambiguous table Cliente. (725)
+** C:\cursoprogress\Fontes\chama_inclusao_pedido_v02.p Nao entendi a linha 1. (196)
+Compiling consultapedido.p
+Unknown or ambiguous table Pedido. (725)
+** C:\cursoprogress\Fontes\consultapedido.p Nao entendi a linha 1. (196)
+Compiling consultapedido_v2.p
+Unknown or ambiguous table Pedido. (725)
+** C:\cursoprogress\Fontes\consultapedido_v2.p Nao entendi a linha 1. (196)
+Compiling consultapedido_v3.p
+Unknown or ambiguous table Pedido. (545)
+** C:\cursoprogress\Fontes\consultapedido_v3.p Nao entendi a linha 1. (196)
+Compiling encode.p
+Unknown or ambiguous table customer. (725)
+** C:\cursoprogress\Fontes\encode.p Nao entendi a linha 1. (196)
+Compiling excel.p
+Unknown or ambiguous table customer. (725)
+** C:\cursoprogress\Fontes\excel.p Nao entendi a linha 1. (196)
+Compiling exclusaopedido.p
+Unknown or ambiguous table Pedido. (725)
+** C:\cursoprogress\Fontes\exclusaopedido.p Nao entendi a linha 1. (196)
+Compiling exclusaopedido_v3.p
+Unknown or ambiguous table Pedido. (545)
+** C:\cursoprogress\Fontes\exclusaopedido_v3.p Nao entendi a linha 1. (196)
+Compiling import_tt.p
+Compiling import_txt.p
+Compiling inclusaopedido.p
+Unknown or ambiguous table Pedido. (725)
+** C:\cursoprogress\Fontes\inclusaopedido.p Nao entendi a linha 1. (196)
+Compiling inclusaopedido_v2.p
+Unknown or ambiguous table Pedido. (725)
+** C:\cursoprogress\Fontes\inclusaopedido_v2.p Nao entendi a linha 1. (196)
+Compiling inclusaopedido_v3.p
+Unknown or ambiguous table Pedido. (545)
+** C:\cursoprogress\Fontes\inclusaopedido_v3.p Nao entendi a linha 1. (196)
+Compiling lookup.p
+Compiling menu_array.p
+Compiling random.p
+Compiling relatorios_txt.p
+Unknown or ambiguous table customer. (725)
+** C:\cursoprogress\Fontes\relatorios_txt.p Nao entendi a linha 9. (196)
+Compiling tela.p
+Unknown or ambiguous table customer. (725)
+** C:\cursoprogress\Fontes\tela.p Nao entendi a linha 1. (196)
+Compiling tela2.p
+Unknown or ambiguous table customer. (725)
+** C:\cursoprogress\Fontes\tela2.p Nao entendi a linha 1. (196)
+Compiling undo_next_leave_quit.p
+Unknown or ambiguous table customer. (725)
+** C:\cursoprogress\Fontes\undo_next_leave_quit.p Nao entendi a linha 1. (196)
+Compiling view_hide1.p
+17:32:11 Looking for *.w in C:\cursoprogress\Fontes
+17:32:11 Looking for *.cls in C:\cursoprogress\Fontes
