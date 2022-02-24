@@ -1,0 +1,1675 @@
+ADD SEQUENCE "ped_codigo"
+  INITIAL 0
+  INCREMENT 1
+  CYCLE-ON-LIMIT no
+
+ADD TABLE "Bairro"
+  AREA "Schema Area"
+  LABEL "Bairro"
+  DUMP-NAME "bairro"
+
+ADD FIELD "bai_codigo" OF "Bairro" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código do Bairro"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cod Bairro"
+  HELP "Informe o código do bairro do cliente"
+  ORDER 10
+
+ADD FIELD "bai_descricao" OF "Bairro" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Descrição Bairro"
+  POSITION 3
+  MAX-WIDTH 100
+  COLUMN-LABEL "Descrição do Bairro"
+  HELP "Informa da descrição do bairro do cliente"
+  ORDER 20
+
+ADD FIELD "cid_codigo" OF "Bairro" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código da Cidade"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cidade"
+  HELP "Informe o código da cidade do cliente"
+  ORDER 40
+
+ADD INDEX "Primario" ON "Bairro" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "bai_codigo" ASCENDING 
+
+ADD INDEX "Cidade" ON "Bairro" 
+  AREA "Schema Area"
+  INDEX-FIELD "cid_codigo" ASCENDING 
+
+ADD TABLE "Cep"
+  AREA "Schema Area"
+  LABEL "Cep do Endereço"
+  DUMP-NAME "cep"
+
+ADD FIELD "cep_logradouro" OF "Cep" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Logradouro"
+  POSITION 3
+  MAX-WIDTH 100
+  COLUMN-LABEL "Logradouro"
+  HELP "Informe a Desccrição do Logradouro"
+  ORDER 20
+
+ADD FIELD "cep_codigo" OF "Cep" AS character 
+  FORMAT "99999-999"
+  INITIAL ""
+  LABEL "Cep"
+  POSITION 4
+  MAX-WIDTH 18
+  COLUMN-LABEL "Cep"
+  HELP "Informe o Código do Cep"
+  ORDER 30
+
+ADD FIELD "cid_codigo" OF "Cep" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código Cidade"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cidade"
+  HELP "Informe o código da cidade do cliente"
+  ORDER 50
+
+ADD FIELD "pas_codigo" OF "Cep" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código do País"
+  POSITION 6
+  MAX-WIDTH 4
+  COLUMN-LABEL "Código do País"
+  HELP "Informe o Código Internacional do País"
+  ORDER 60
+
+ADD FIELD "est_uf" OF "Cep" AS character 
+  FORMAT "x(2)"
+  INITIAL ""
+  LABEL "Estado"
+  POSITION 7
+  MAX-WIDTH 4
+  COLUMN-LABEL "Estado"
+  HELP "Informar Sigla do Estado"
+  ORDER 70
+
+ADD FIELD "bai_codigo" OF "Cep" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código Bairro"
+  POSITION 8
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cod Bairro"
+  HELP "Informe o código do bairro do cliente"
+  ORDER 80
+
+ADD INDEX "Primario" ON "Cep" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  DESCRIPTION "Primario"
+  INDEX-FIELD "cep_codigo" ASCENDING 
+
+ADD INDEX "CepBairro" ON "Cep" 
+  AREA "Schema Area"
+  INDEX-FIELD "bai_codigo" ASCENDING 
+
+ADD INDEX "CepCidade" ON "Cep" 
+  AREA "Schema Area"
+  INDEX-FIELD "cid_codigo" ASCENDING 
+
+ADD INDEX "CepEstado" ON "Cep" 
+  AREA "Schema Area"
+  INDEX-FIELD "est_uf" ASCENDING 
+
+ADD INDEX "CepPais" ON "Cep" 
+  AREA "Schema Area"
+  INDEX-FIELD "pas_codigo" ASCENDING 
+
+ADD TABLE "CFOP"
+  AREA "Schema Area"
+  LABEL "CFOP"
+  DESCRIPTION "Tabela referente a CFOP"
+  DUMP-NAME "cfop"
+
+ADD FIELD "cfo_codigo" OF "CFOP" AS integer 
+  FORMAT "z,zz9"
+  INITIAL "0"
+  LABEL "Código do CFOP"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cód CFOP"
+  HELP "Informe o Código de CFOP"
+  ORDER 10
+
+ADD FIELD "cfo_descricao" OF "CFOP" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Descrição do CFOP"
+  POSITION 3
+  MAX-WIDTH 100
+  COLUMN-LABEL "Desc CFOP"
+  HELP "Informe a descrição do CFOP"
+  ORDER 20
+
+ADD FIELD "cfo_entradasaida" OF "CFOP" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  LABEL "Entrada ou Saida do CFOP"
+  POSITION 4
+  MAX-WIDTH 1
+  COLUMN-LABEL "Entrada ou Saida"
+  HELP "Informe se o CFOP é de entrada ou saida"
+  ORDER 30
+
+ADD INDEX "Primario" ON "CFOP" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cfo_codigo" ASCENDING 
+
+ADD INDEX "Descricao" ON "CFOP" 
+  AREA "Schema Area"
+  INDEX-FIELD "cfo_descricao" ASCENDING 
+
+ADD INDEX "inout" ON "CFOP" 
+  AREA "Schema Area"
+  INDEX-FIELD "cfo_entradasaida" ASCENDING 
+
+ADD TABLE "Cidade"
+  AREA "Schema Area"
+  LABEL "Cidade do Pedido"
+  DUMP-NAME "pedidocidade"
+
+ADD FIELD "cid_codigo" OF "Cidade" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código da Cidade"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cidade"
+  HELP "Informe o Código da Cidade"
+  ORDER 10
+
+ADD FIELD "cid_nome" OF "Cidade" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Nome da Cidade"
+  POSITION 3
+  MAX-WIDTH 100
+  COLUMN-LABEL "Cidade"
+  HELP "Informe o Nome da Cidade"
+  ORDER 20
+
+ADD FIELD "est_codigo" OF "Cidade" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Codigo do Estado"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Codigo"
+  HELP "Informe o Código do Estado"
+  ORDER 40
+
+ADD INDEX "Primario" ON "Cidade" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cid_codigo" ASCENDING 
+  INDEX-FIELD "est_codigo" ASCENDING 
+
+ADD INDEX "Nome" ON "Cidade" 
+  AREA "Schema Area"
+  INDEX-FIELD "cid_nome" ASCENDING 
+
+ADD TABLE "Cliente"
+  AREA "Schema Area"
+  LABEL "Cliente"
+  DUMP-NAME "cliente"
+
+ADD FIELD "cli_codigo" OF "Cliente" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código Cliente"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cod Cliente"
+  HELP "Insira o código do cliente"
+  ORDER 10
+
+ADD FIELD "cli_cnpj" OF "Cliente" AS character 
+  FORMAT "99.999.999/9999-99"
+  INITIAL ""
+  LABEL "CNPJ Cliente"
+  POSITION 3
+  MAX-WIDTH 36
+  COLUMN-LABEL "CNPJ"
+  HELP "Insira o número do CNPJ do cliente"
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "cli_razaosocial" OF "Cliente" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Razao Social"
+  POSITION 4
+  MAX-WIDTH 120
+  COLUMN-LABEL "Razão Social"
+  HELP "Insira a razão social do cliente"
+  ORDER 30
+  MANDATORY
+
+ADD FIELD "cli_nomefantasia" OF "Cliente" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Nome Fantasia"
+  POSITION 5
+  MAX-WIDTH 120
+  COLUMN-LABEL "Nome Fantasia"
+  HELP "Insira o nome fantasia do nome do cliente"
+  ORDER 40
+
+ADD FIELD "cli_numlog" OF "Cliente" AS character 
+  DESCRIPTION "Possilidade de uso de S/N."
+  FORMAT "x(10)"
+  INITIAL ""
+  LABEL "Numero Logradouro"
+  POSITION 6
+  MAX-WIDTH 20
+  COLUMN-LABEL "Num Logradouro"
+  HELP "Insira o número do logradouro do cliente"
+  ORDER 50
+
+ADD FIELD "cli_complog" OF "Cliente" AS character 
+  FORMAT "x(30)"
+  INITIAL ""
+  LABEL "Complemento"
+  POSITION 7
+  MAX-WIDTH 60
+  COLUMN-LABEL "Complemento"
+  HELP "Insira o complemento do logradouro do cliente"
+  ORDER 60
+
+ADD FIELD "cli_bloqueio" OF "Cliente" AS character 
+  DESCRIPTION "COM/FIN/FIS"
+  FORMAT "x(3)"
+  INITIAL ""
+  LABEL "Bloqueio"
+  POSITION 8
+  MAX-WIDTH 6
+  COLUMN-LABEL "Bloqueio"
+  HELP "Insira o tipo de bloqueio do cliente"
+  ORDER 70
+
+ADD FIELD "cli_inscestad" OF "Cliente" AS character 
+  FORMAT "999.999.999.999"
+  INITIAL ""
+  LABEL "Inscrição Estadual"
+  POSITION 9
+  MAX-WIDTH 30
+  COLUMN-LABEL "Inscrição Estadual"
+  HELP "Insira a inscrição estadual do cliente"
+  ORDER 80
+
+ADD FIELD "cli_inscmunici" OF "Cliente" AS character 
+  FORMAT "x(11)"
+  INITIAL ""
+  LABEL "Inscrição Municipal"
+  POSITION 10
+  MAX-WIDTH 22
+  COLUMN-LABEL "Inscrição Municipal"
+  HELP "Insira a inscrição municipal do cliente"
+  ORDER 90
+
+ADD FIELD "cli_situacao" OF "Cliente" AS character 
+  FORMAT "x(20)"
+  INITIAL ""
+  LABEL "Situação Cliente"
+  POSITION 11
+  MAX-WIDTH 40
+  COLUMN-LABEL "Situação Cliente"
+  HELP "Insira a situação do cliente"
+  ORDER 100
+
+ADD FIELD "cep_codigo" OF "Cliente" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "CEP Cliente"
+  POSITION 12
+  MAX-WIDTH 16
+  COLUMN-LABEL "CEP Cliente"
+  HELP "Insira o CEP do cliente"
+  ORDER 110
+
+ADD FIELD "fop_codigo" OF "Cliente" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Forma de Pagamento"
+  POSITION 13
+  MAX-WIDTH 4
+  COLUMN-LABEL "Forma de Pagamento"
+  HELP "Insira a forma de pagamento do cliente"
+  ORDER 120
+
+ADD FIELD "tip_codigo" OF "Cliente" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Cod Tipo Pagamento"
+  POSITION 14
+  MAX-WIDTH 4
+  COLUMN-LABEL "Codigo Pagamento"
+  HELP "Insira o código o tipo de pagamento do cliente"
+  ORDER 130
+
+ADD INDEX "Primario" ON "Cliente" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "cli_codigo" ASCENDING 
+
+ADD INDEX "Cep" ON "Cliente" 
+  AREA "Schema Area"
+  INDEX-FIELD "cep_codigo" ASCENDING 
+
+ADD INDEX "FormaPagamento" ON "Cliente" 
+  AREA "Schema Area"
+  INDEX-FIELD "fop_codigo" ASCENDING 
+
+ADD INDEX "TipoPagamento" ON "Cliente" 
+  AREA "Schema Area"
+  INDEX-FIELD "tip_codigo" ASCENDING 
+
+ADD TABLE "Empresa"
+  AREA "Schema Area"
+  DUMP-NAME "empresa"
+
+ADD FIELD "Emp_codigo" OF "Empresa" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Códido Empresa"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cod Empresa"
+  HELP "Informar o Código da Empresa"
+  ORDER 10
+
+ADD FIELD "Emp_razao" OF "Empresa" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Razão Rocial"
+  POSITION 3
+  MAX-WIDTH 100
+  COLUMN-LABEL "Eazão Social"
+  HELP "Informar a Razão Rocial"
+  ORDER 20
+
+ADD FIELD "Emp_fantasia" OF "Empresa" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Nome Fantasia"
+  POSITION 4
+  MAX-WIDTH 100
+  COLUMN-LABEL "Nome Fantasia"
+  HELP "Informar o Nome Fantasia"
+  ORDER 30
+
+ADD FIELD "Cep_codigo" OF "Empresa" AS character 
+  FORMAT "99999-99"
+  INITIAL ""
+  LABEL "Cep"
+  POSITION 5
+  MAX-WIDTH 16
+  COLUMN-LABEL "Cep"
+  HELP "Informar o Cep"
+  ORDER 40
+
+ADD FIELD "Emp_logradouro" OF "Empresa" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Logradouro"
+  POSITION 6
+  MAX-WIDTH 100
+  COLUMN-LABEL "Logradouro"
+  HELP "Informar o Logradouro"
+  ORDER 50
+
+ADD FIELD "Emp_numero" OF "Empresa" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Numero"
+  POSITION 7
+  MAX-WIDTH 4
+  COLUMN-LABEL "Numero"
+  HELP "Informar o Numero do Endereço da Empresa"
+  ORDER 60
+
+ADD INDEX "Emp_codigo" ON "Empresa" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "Emp_codigo" ASCENDING 
+
+ADD INDEX "Cep_codigo" ON "Empresa" 
+  AREA "Schema Area"
+  INDEX-FIELD "Cep_codigo" ASCENDING 
+
+ADD TABLE "Estabelecimento"
+  AREA "Schema Area"
+  LABEL "estabelecimento"
+  DUMP-NAME "estab"
+
+ADD FIELD "est_codigo" OF "Estabelecimento" AS integer 
+  FORMAT "99999"
+  INITIAL "0"
+  LABEL "Estab"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Estabelecimento"
+  HELP "Informe aqui o Estabelecimento"
+  ORDER 10
+
+ADD FIELD "est_descricao" OF "Estabelecimento" AS character 
+  FORMAT "X(20)"
+  INITIAL ""
+  LABEL "Descrição"
+  POSITION 3
+  MAX-WIDTH 40
+  COLUMN-LABEL "Descrição"
+  HELP "Informe aui a descrição do estabelecimento"
+  ORDER 20
+
+ADD INDEX "est_codigo" ON "Estabelecimento" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "est_codigo" ASCENDING 
+
+ADD TABLE "Estado"
+  AREA "Schema Area"
+  DUMP-NAME "estado"
+
+ADD FIELD "pas_codigo" OF "Estado" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código País"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "País"
+  HELP "Informe o Código do País"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "est_uf" OF "Estado" AS character 
+  FORMAT "!!"
+  INITIAL ""
+  LABEL "Estado UF"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "UF"
+  HELP "Informe a UF do estado"
+  ORDER 20
+
+ADD FIELD "est_nome" OF "Estado" AS character 
+  FORMAT "x(20)"
+  INITIAL ""
+  LABEL "Estado Nome"
+  POSITION 4
+  MAX-WIDTH 40
+  COLUMN-LABEL "Nome"
+  HELP "Informe o nome do estado"
+  ORDER 30
+
+ADD FIELD "est_codigo" OF "Estado" AS integer 
+  FORMAT "z9"
+  INITIAL "0"
+  LABEL "Codigo do Estado"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Codigo"
+  HELP "Informe o código do estado"
+  ORDER 40
+
+ADD INDEX "primario" ON "Estado" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "est_codigo" ASCENDING 
+
+ADD INDEX "Pais" ON "Estado" 
+  AREA "Schema Area"
+  INDEX-FIELD "pas_codigo" ASCENDING 
+
+ADD TABLE "FormaPagamento"
+  AREA "Schema Area"
+  LABEL "Forma de pagamento"
+  DUMP-NAME "formapagamento"
+
+ADD FIELD "fop_codigo" OF "FormaPagamento" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Forma Pagamento"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Forma Pgto"
+  HELP "Informe o Código da Forma de Pagamento do Pedido"
+  ORDER 10
+
+ADD FIELD "fop_descricao" OF "FormaPagamento" AS character 
+  FORMAT "x(20)"
+  INITIAL ""
+  LABEL "Descrição Pagamento"
+  POSITION 3
+  MAX-WIDTH 40
+  COLUMN-LABEL "Descr Pgto"
+  HELP "Informe a descrição da forma de pagamento."
+  ORDER 20
+
+ADD FIELD "fop_prazo" OF "FormaPagamento" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Prazo"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Prazo"
+  HELP "Informe a qtde de dias do Prazo"
+  ORDER 30
+
+ADD FIELD "fop_qtd_parcela" OF "FormaPagamento" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Quantidade PArcela"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Qtd Parc"
+  HELP "Informe a quantidade de Parcelas"
+  ORDER 40
+
+ADD FIELD "fop_perc_parcela" OF "FormaPagamento" AS decimal 
+  FORMAT "zz9.99"
+  INITIAL "0"
+  LABEL "Percentual da Parcela"
+  POSITION 6
+  MAX-WIDTH 17
+  COLUMN-LABEL "PErc Parc"
+  HELP "Informe o percentual da parcela"
+  DECIMALS 2
+  ORDER 50
+
+ADD FIELD "mod_codigo" OF "FormaPagamento" AS integer 
+  FORMAT "zzz,zzz9"
+  INITIAL "0"
+  LABEL "Modalidade"
+  POSITION 7
+  MAX-WIDTH 4
+  COLUMN-LABEL "CodMod"
+  HELP "Infome o Código da Modalidade Pagamento."
+  ORDER 60
+
+ADD FIELD "fop_num_parcela" OF "FormaPagamento" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Numero da parcela"
+  POSITION 8
+  MAX-WIDTH 4
+  COLUMN-LABEL "Num Parc"
+  HELP "Informe o numero da parcela"
+  ORDER 70
+
+ADD INDEX "Primario" ON "FormaPagamento" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "fop_codigo" ASCENDING 
+  INDEX-FIELD "fop_num_parcela" ASCENDING 
+
+ADD INDEX "Modalidade" ON "FormaPagamento" 
+  AREA "Schema Area"
+  INDEX-FIELD "mod_codigo" ASCENDING 
+
+ADD TABLE "Item"
+  AREA "Schema Area"
+  LABEL "Item"
+  DUMP-NAME "item"
+
+ADD FIELD "ite_codigo" OF "Item" AS integer 
+  FORMAT "zzz,zz9.99"
+  INITIAL "0"
+  LABEL "Código do Item"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Código"
+  HELP "Informe o código do item"
+  ORDER 10
+
+ADD FIELD "ite_descricao" OF "Item" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Descrição do item"
+  POSITION 3
+  MAX-WIDTH 100
+  COLUMN-LABEL "Descrição"
+  HELP "Informe a descrição do item"
+  ORDER 20
+
+ADD FIELD "ite_unidade_medida" OF "Item" AS character 
+  FORMAT "x(2)"
+  INITIAL ""
+  LABEL "Unidade de medida do item"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Unidade de medida"
+  HELP "Informe a unidade de medida do item"
+  ORDER 30
+
+ADD FIELD "ite_preco" OF "Item" AS decimal 
+  FORMAT "zzz,zz9.99"
+  INITIAL "0"
+  LABEL "Preço do item"
+  POSITION 5
+  MAX-WIDTH 17
+  COLUMN-LABEL "Preço"
+  HELP "Informe o preço do item"
+  DECIMALS 2
+  ORDER 40
+
+ADD INDEX "Index_item" ON "Item" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "ite_codigo" ASCENDING 
+
+ADD TABLE "ItemNF"
+  AREA "Schema Area"
+  DESCRIPTION "Tabela de Item da nota Fiscal"
+  DUMP-NAME "itemnf"
+
+ADD FIELD "inf_qtd" OF "ItemNF" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Quantidade"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Qtd"
+  HELP "Informe a Quantidade do Item do Pedido"
+  ORDER 30
+
+ADD FIELD "inf_preco" OF "ItemNF" AS decimal 
+  FORMAT "zzz,zz9.99"
+  INITIAL "0"
+  LABEL "Preço Produto"
+  POSITION 4
+  MAX-WIDTH 17
+  COLUMN-LABEL "Preço"
+  HELP "Informe o Preço do Item do Pedido"
+  DECIMALS 2
+  ORDER 40
+
+ADD FIELD "inf_valor" OF "ItemNF" AS decimal 
+  FORMAT "zzz,zz9.99"
+  INITIAL "0"
+  LABEL "Valor Item"
+  POSITION 5
+  MAX-WIDTH 17
+  COLUMN-LABEL "Vlr Item"
+  HELP "Informe o Valor do Item do Pedido"
+  DECIMALS 2
+  ORDER 50
+
+ADD FIELD "inf_descricao" OF "ItemNF" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Descrição do Item"
+  POSITION 6
+  MAX-WIDTH 100
+  COLUMN-LABEL "Descrição do Item"
+  HELP "Informe a Descrição do Item do Pedido"
+  ORDER 60
+
+ADD FIELD "inf_desconto" OF "ItemNF" AS decimal 
+  FORMAT "z9.99"
+  INITIAL "0"
+  LABEL "Percentual Desconto"
+  POSITION 7
+  MAX-WIDTH 17
+  COLUMN-LABEL "Desconto"
+  HELP "Informe o Percentual de Desconto do Item do Pedido"
+  DECIMALS 2
+  ORDER 70
+
+ADD FIELD "ped_codigo" OF "ItemNF" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Produto"
+  POSITION 8
+  MAX-WIDTH 4
+  COLUMN-LABEL "Prod"
+  HELP "Informe o Código do Produto"
+  ORDER 80
+
+ADD FIELD "nfe_num" OF "ItemNF" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Número da Nota Fiscal"
+  POSITION 9
+  MAX-WIDTH 4
+  COLUMN-LABEL "Número NF"
+  HELP "Informe o Número da Nota Fiscal"
+  ORDER 90
+
+ADD FIELD "emp_codigo" OF "ItemNF" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Empresa"
+  POSITION 10
+  MAX-WIDTH 4
+  COLUMN-LABEL "Emp"
+  HELP "Informe o Código da Empresa"
+  ORDER 100
+
+ADD FIELD "est_codigo" OF "ItemNF" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Estabelecimento"
+  POSITION 11
+  MAX-WIDTH 4
+  COLUMN-LABEL "Estab"
+  HELP "Informe o Código do Estabelecimento"
+  ORDER 110
+
+ADD INDEX "Primario" ON "ItemNF" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "est_codigo" ASCENDING 
+  INDEX-FIELD "emp_codigo" ASCENDING 
+  INDEX-FIELD "nfe_num" ASCENDING 
+  INDEX-FIELD "ped_codigo" ASCENDING 
+
+ADD TABLE "ListaPreco"
+  AREA "Schema Area"
+  LABEL "Lista Preço"
+  DUMP-NAME "lst_codigo"
+
+ADD FIELD "lst_codigo" OF "ListaPreco" AS integer 
+  FORMAT "99999999"
+  INITIAL "0"
+  LABEL "Lista de Preço"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Lista"
+  HELP "Informe código Lista de Preços"
+  ORDER 10
+
+ADD FIELD "ite_codigo" OF "ListaPreco" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Item"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Item"
+  HELP "Informe o item da lista"
+  ORDER 20
+
+ADD FIELD "lst_preco" OF "ListaPreco" AS decimal 
+  FORMAT "zzz,zz9.99"
+  INITIAL "0"
+  LABEL "Preço de Venda"
+  POSITION 4
+  MAX-WIDTH 17
+  COLUMN-LABEL "Preço"
+  DECIMALS 2
+  ORDER 30
+
+ADD FIELD "lst_inicio" OF "ListaPreco" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Data de Início"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Início"
+  HELP "Informe a data de início"
+  ORDER 40
+
+ADD FIELD "lst_fim" OF "ListaPreco" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Data Fim"
+  POSITION 6
+  MAX-WIDTH 4
+  COLUMN-LABEL "Fim"
+  HELP "Informe a data fim"
+  ORDER 50
+
+ADD INDEX "Primario" ON "ListaPreco" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "lst_codigo" ASCENDING 
+
+ADD INDEX "Item" ON "ListaPreco" 
+  AREA "Schema Area"
+  INDEX-FIELD "ite_codigo" ASCENDING 
+
+ADD TABLE "NotaFiscal"
+  AREA "Schema Area"
+  LABEL "Nota Fiscal do Pedido"
+  DUMP-NAME "notafiscal"
+
+ADD FIELD "nfe_num" OF "NotaFiscal" AS integer 
+  FORMAT "zzz,zzz,zz9"
+  INITIAL "0"
+  LABEL "Num Nota Fiscal"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Num Nota Fiscal"
+  HELP "Numero da Nota Fiscal do Pedido"
+  ORDER 10
+
+ADD FIELD "nfe_codserie" OF "NotaFiscal" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Código de Série"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cód Serie"
+  HELP "Informe o Código de Série da Nota Fiscal do Pedido"
+  ORDER 20
+
+ADD FIELD "cod_natoperacao" OF "NotaFiscal" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Natureza da Operação"
+  POSITION 4
+  MAX-WIDTH 100
+  COLUMN-LABEL "Natureza da Operação"
+  HELP "Informe a Natureza da Operação"
+  ORDER 30
+
+ADD FIELD "nfe_cnpjemp" OF "NotaFiscal" AS character 
+  FORMAT "99.999.999/9999-99"
+  INITIAL ""
+  LABEL "CNPJ"
+  POSITION 5
+  MAX-WIDTH 36
+  COLUMN-LABEL "CNPJ"
+  HELP "Informe o CNPJ do Cliente"
+  ORDER 40
+
+ADD FIELD "nfe_cnpjcli" OF "NotaFiscal" AS character 
+  FORMAT "99.999.999/9999-99"
+  INITIAL ""
+  LABEL "CNPJ do Cliente"
+  POSITION 6
+  MAX-WIDTH 36
+  COLUMN-LABEL "CPNJ do Cliente"
+  HELP "Informe o CPF do Cliente do Pedido"
+  ORDER 60
+
+ADD FIELD "nfe_inscestadual" OF "NotaFiscal" AS character 
+  FORMAT "999/999999"
+  INITIAL ""
+  LABEL "Inscrição Estadual"
+  POSITION 7
+  MAX-WIDTH 20
+  COLUMN-LABEL "Insc Estadual"
+  HELP "Informe a Inscrição Estadual do Cliente do Pedido"
+  ORDER 70
+
+ADD FIELD "nfe_endrua" OF "NotaFiscal" AS character 
+  FORMAT "x(500)"
+  INITIAL ""
+  LABEL "Endereço do Cliente"
+  POSITION 8
+  MAX-WIDTH 1000
+  COLUMN-LABEL "Endereço do Cliente"
+  HELP "Informe o Endereço do Cliente"
+  ORDER 80
+
+ADD FIELD "nfe_endbairro" OF "NotaFiscal" AS character 
+  FORMAT "x(500)"
+  INITIAL ""
+  LABEL "Bairro"
+  POSITION 9
+  MAX-WIDTH 1000
+  COLUMN-LABEL "Bairro"
+  HELP "Informe o Bairro do Cliente"
+  ORDER 90
+
+ADD FIELD "nfe_endmunicipio" OF "NotaFiscal" AS character 
+  FORMAT "x(500)"
+  INITIAL ""
+  LABEL "Município"
+  POSITION 10
+  MAX-WIDTH 1000
+  COLUMN-LABEL "Município"
+  HELP "Informe o Município do Cliente"
+  ORDER 100
+
+ADD FIELD "nfe_cep" OF "NotaFiscal" AS character 
+  FORMAT "99.999-999"
+  INITIAL ""
+  LABEL "CEP"
+  POSITION 11
+  MAX-WIDTH 20
+  COLUMN-LABEL "CEP"
+  HELP "Informe o CEP do Cliente"
+  ORDER 110
+
+ADD FIELD "nfe_fone" OF "NotaFiscal" AS character 
+  FORMAT "(999) 99999-9999"
+  INITIAL ""
+  LABEL "Número do Telefone"
+  POSITION 12
+  MAX-WIDTH 32
+  COLUMN-LABEL "Número do Telefone"
+  HELP "Informe o Número do Telefone do Cliente"
+  ORDER 120
+
+ADD FIELD "nfe_ufcod" OF "NotaFiscal" AS character 
+  FORMAT "!!"
+  INITIAL ""
+  LABEL "Código UF"
+  POSITION 13
+  MAX-WIDTH 4
+  COLUMN-LABEL "UF"
+  HELP "Informe a UF do Cliente"
+  ORDER 130
+
+ADD FIELD "nfe_dataemissao" OF "NotaFiscal" AS date 
+  FORMAT "99/99/9999"
+  INITIAL "today"
+  LABEL "Data da Emissão da Nota Fiscal"
+  POSITION 14
+  MAX-WIDTH 4
+  COLUMN-LABEL "Data da Emissão da Nota Fiscal"
+  HELP "Informe a Data da Emissão da Nota Fiscal"
+  ORDER 140
+
+ADD FIELD "nfe_datasaida" OF "NotaFiscal" AS date 
+  FORMAT "99/99/9999"
+  INITIAL "today"
+  LABEL "Data da Emissão da Nota Fiscal"
+  POSITION 15
+  MAX-WIDTH 4
+  COLUMN-LABEL "Data da Emissão da Nota Fiscal"
+  HELP "Informe Data da Emissão da Nota Fiscal"
+  ORDER 150
+
+ADD FIELD "nfe_codestab" OF "NotaFiscal" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Estabelecimento"
+  POSITION 16
+  MAX-WIDTH 4
+  COLUMN-LABEL "Estab"
+  HELP "Informe o Código do Estabelecimento"
+  ORDER 160
+
+ADD FIELD "nfe_codemp" OF "NotaFiscal" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Empresa"
+  POSITION 17
+  MAX-WIDTH 4
+  COLUMN-LABEL "Emp"
+  HELP "Informe o Código da Empresa"
+  ORDER 170
+
+ADD INDEX "Primario" ON "NotaFiscal" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "nfe_num" ASCENDING 
+  INDEX-FIELD "nfe_codserie" ASCENDING 
+  INDEX-FIELD "nfe_codestab" ASCENDING 
+  INDEX-FIELD "nfe_codemp" ASCENDING 
+
+ADD INDEX "Empresa" ON "NotaFiscal" 
+  AREA "Schema Area"
+  INDEX-FIELD "nfe_codemp" ASCENDING 
+
+ADD INDEX "Estabelecimento" ON "NotaFiscal" 
+  AREA "Schema Area"
+  INDEX-FIELD "nfe_codestab" ASCENDING 
+
+ADD TABLE "Ordem"
+  AREA "Schema Area"
+  DUMP-NAME "Ordem"
+  FILE-MISC26 "Ordem de Compra"
+
+ADD FIELD "ord_codigo" OF "Ordem" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código Ordem"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Ordem"
+  HELP "Informe o Código da Ordem"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "ite_codigo" OF "Ordem" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Produto"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Prod"
+  HELP "Informe o Código do Item"
+  ORDER 20
+
+ADD FIELD "ven_codigo" OF "Ordem" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Vendedor"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Ven"
+  HELP "Informe o Código do Vendedor do Pedido"
+  ORDER 30
+
+ADD FIELD "com_codigo" OF "Ordem" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Comprador"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Comp"
+  HELP "Informe o Código do Comprador do Pedido"
+  ORDER 40
+
+ADD FIELD "cep_codigo" OF "Ordem" AS character 
+  FORMAT "99999-999"
+  INITIAL ""
+  LABEL "Cep"
+  POSITION 6
+  MAX-WIDTH 18
+  COLUMN-LABEL "Cep"
+  HELP "Informe o Codigo do Cep"
+  ORDER 50
+
+ADD INDEX "Primario" ON "Ordem" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "ord_codigo" ASCENDING 
+  INDEX-FIELD "ite_codigo" ASCENDING 
+
+ADD INDEX "CodCmp" ON "Ordem" 
+  AREA "Schema Area"
+  INDEX-FIELD "com_codigo" ASCENDING 
+
+ADD INDEX "CodVend" ON "Ordem" 
+  AREA "Schema Area"
+  INDEX-FIELD "ven_codigo" ASCENDING 
+
+ADD TABLE "Pais"
+  AREA "Schema Area"
+  LABEL "Países"
+  DESCRIPTION "Cadastros de Países"
+  DUMP-NAME "pais"
+
+ADD FIELD "pas_codigo" OF "Pais" AS integer 
+  DESCRIPTION "Informe o Código internacional do País"
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código do País"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "País"
+  ORDER 10
+
+ADD FIELD "pas_descricao" OF "Pais" AS character 
+  DESCRIPTION "Informe a Descrição do País"
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Desc. País"
+  POSITION 3
+  MAX-WIDTH 100
+  COLUMN-LABEL "Desc. País"
+  ORDER 20
+
+ADD FIELD "pas_sigla" OF "Pais" AS character 
+  DESCRIPTION "Informe a Sigla do País."
+  FORMAT "x(3)"
+  INITIAL ""
+  LABEL "Sigla"
+  POSITION 4
+  MAX-WIDTH 6
+  COLUMN-LABEL "Sigla"
+  ORDER 30
+
+ADD FIELD "pas_moeda" OF "Pais" AS integer 
+  DESCRIPTION "Informe a moeda corrente do País"
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Moeda"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Moeda"
+  ORDER 40
+
+ADD FIELD "pas_bacen" OF "Pais" AS integer 
+  DESCRIPTION "Informe o Código do Bacen"
+  FORMAT "ZZZ9"
+  INITIAL "0"
+  LABEL "Código Bacen"
+  POSITION 6
+  MAX-WIDTH 4
+  COLUMN-LABEL "Código Bacen"
+  ORDER 50
+
+ADD INDEX "Primeira" ON "Pais" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "pas_codigo" ASCENDING 
+
+ADD TABLE "Pedido"
+  AREA "Schema Area"
+  LABEL "Pedidos de Venda"
+  DUMP-NAME "pedido"
+
+ADD FIELD "ped_codigo" OF "Pedido" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código Pedido"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Pedido"
+  HELP "Informe o Código do Pedido"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "est_codigo" OF "Pedido" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Estabelecimento"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Estab"
+  HELP "Informe o Código do Estabelecimento"
+  ORDER 20
+
+ADD FIELD "emp_codigo" OF "Pedido" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Empresa"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Emp"
+  HELP "Informe o Código da Empresa"
+  ORDER 30
+
+ADD FIELD "ped_emissao" OF "Pedido" AS date 
+  FORMAT "99/99/9999"
+  INITIAL "today"
+  LABEL "Emissão"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Emissão"
+  HELP "Informe a Data de Emissão do Pedido"
+  ORDER 40
+
+ADD FIELD "cli_codigo" OF "Pedido" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Cliente"
+  POSITION 6
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cliente"
+  HELP "Informe o Código do Cliente"
+  ORDER 50
+
+ADD FIELD "fop_codigo" OF "Pedido" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Forma Pagamento"
+  POSITION 7
+  MAX-WIDTH 4
+  COLUMN-LABEL "Forma Pgto"
+  HELP "Informe o Código da Forma de Pagamento do Pedido"
+  ORDER 60
+
+ADD FIELD "tpp_codigo" OF "Pedido" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Tipo Pagamento"
+  POSITION 8
+  MAX-WIDTH 4
+  COLUMN-LABEL "Tp Pagto"
+  HELP "Informe o Código do Tipo de Pagamento do Pedido"
+  ORDER 70
+
+ADD FIELD "sip_codigo" OF "Pedido" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Situação Pedido"
+  POSITION 9
+  MAX-WIDTH 4
+  COLUMN-LABEL "Sit Ped"
+  HELP "Informe a Situação do Pedido"
+  ORDER 80
+
+ADD FIELD "ven_codigo" OF "Pedido" AS integer 
+  FORMAT "zz9"
+  INITIAL "0"
+  LABEL "Vendedor"
+  POSITION 10
+  MAX-WIDTH 4
+  COLUMN-LABEL "Ven"
+  HELP "Informe o Código do Vendedor do Pedido"
+  ORDER 90
+
+ADD FIELD "ped_entrega" OF "Pedido" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Entrega"
+  POSITION 11
+  MAX-WIDTH 4
+  COLUMN-LABEL "Entrega"
+  HELP "Informe a Data de Entrega do Pedido"
+  ORDER 100
+
+ADD FIELD "orc_codigo" OF "Pedido" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Ordem Compra"
+  POSITION 12
+  MAX-WIDTH 4
+  COLUMN-LABEL "Or.Comp"
+  HELP "Informe o Código da Ordem de Compra do Pedido"
+  ORDER 110
+
+ADD FIELD "nfe_numero" OF "Pedido" AS integer 
+  FORMAT "zz,zzz,zz9"
+  INITIAL "0"
+  LABEL "Nota Fiscal"
+  POSITION 13
+  MAX-WIDTH 4
+  COLUMN-LABEL "NFe"
+  HELP "Informe o Número da Nota Fiscal do Pedido"
+  ORDER 120
+
+ADD FIELD "tra_codigo" OF "Pedido" AS integer 
+  FORMAT "zzz,zzz9"
+  INITIAL "0"
+  LABEL "Transportadora"
+  POSITION 14
+  MAX-WIDTH 4
+  COLUMN-LABEL "Transp"
+  HELP "Informe o Código da Transportadora do Pedido"
+  ORDER 130
+
+ADD FIELD "Cfo_codigo" OF "Pedido" AS integer 
+  FORMAT "9,9999"
+  INITIAL "0"
+  LABEL "CFOP"
+  POSITION 15
+  MAX-WIDTH 4
+  COLUMN-LABEL "CFOP"
+  HELP "Informe o Código Fiscal de Operação do Pedido"
+  ORDER 140
+
+ADD INDEX "Primario" ON "Pedido" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "ped_codigo" ASCENDING 
+
+ADD INDEX "Cliente" ON "Pedido" 
+  AREA "Schema Area"
+  INDEX-FIELD "ped_codigo" ASCENDING 
+
+ADD INDEX "Empresa" ON "Pedido" 
+  AREA "Schema Area"
+  INDEX-FIELD "emp_codigo" ASCENDING 
+
+ADD INDEX "Estabelecimento" ON "Pedido" 
+  AREA "Schema Area"
+  INDEX-FIELD "est_codigo" ASCENDING 
+
+ADD INDEX "Vendedor" ON "Pedido" 
+  AREA "Schema Area"
+  INDEX-FIELD "ven_codigo" ASCENDING 
+
+ADD TABLE "PedidoItem"
+  AREA "Schema Area"
+  LABEL "Itens do Pedido de Venda"
+  DUMP-NAME "pedidoitem"
+
+ADD FIELD "ped_codigo" OF "PedidoItem" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código Pedido"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Pedido"
+  HELP "Informe o Código do Pedido"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "ite_codigo" OF "PedidoItem" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Item"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Item"
+  HELP "Informe o Código do Item do Pedido"
+  ORDER 20
+
+ADD FIELD "pdi_qtd" OF "PedidoItem" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Quantidade"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Qtd"
+  HELP "Informe a Quantidade do Item do Pedido"
+  ORDER 30
+
+ADD FIELD "pdi_preco" OF "PedidoItem" AS decimal 
+  FORMAT "zzz,zz9.99"
+  INITIAL "0"
+  LABEL "Preço Item"
+  POSITION 5
+  MAX-WIDTH 17
+  COLUMN-LABEL "Preço"
+  HELP "Informe o Preço do Item do Pedido"
+  DECIMALS 2
+  ORDER 40
+
+ADD FIELD "pdi_valor" OF "PedidoItem" AS decimal 
+  FORMAT "zzz,zz9.99"
+  INITIAL "0"
+  LABEL "Valor Item"
+  POSITION 6
+  MAX-WIDTH 17
+  COLUMN-LABEL "Vlr Item"
+  HELP "Informe o Valor do Item do Pedido"
+  DECIMALS 2
+  ORDER 50
+
+ADD FIELD "pdi_descricao" OF "PedidoItem" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Descrição do Item"
+  POSITION 7
+  MAX-WIDTH 100
+  COLUMN-LABEL "Descrição do Item"
+  HELP "Informe a Descrição do Item do Pedido"
+  ORDER 60
+
+ADD FIELD "pdi_desconto" OF "PedidoItem" AS decimal 
+  FORMAT "z9.99"
+  INITIAL "0"
+  LABEL "Percentual Desconto"
+  POSITION 8
+  MAX-WIDTH 17
+  COLUMN-LABEL "Desconto"
+  HELP "Informe o Percentual de Desconto do Item do Pedido"
+  DECIMALS 2
+  ORDER 70
+
+ADD FIELD "lst_codigo" OF "PedidoItem" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Lista Preço"
+  POSITION 9
+  MAX-WIDTH 4
+  COLUMN-LABEL "Lista"
+  HELP "Informe a Lista de Preços do Item do Pedido"
+  ORDER 80
+
+ADD INDEX "Primario" ON "PedidoItem" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "ped_codigo" ASCENDING 
+  INDEX-FIELD "ite_codigo" ASCENDING 
+
+ADD INDEX "ListaPreco" ON "PedidoItem" 
+  AREA "Schema Area"
+  INDEX-FIELD "lst_codigo" ASCENDING 
+
+ADD TABLE "PedidoSituacao"
+  AREA "Schema Area"
+  LABEL "Situação Pedido"
+  DUMP-NAME "pedidosituacao"
+
+ADD FIELD "pds_desc" OF "PedidoSituacao" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Sitauação Pedido"
+  POSITION 2
+  MAX-WIDTH 16
+  COLUMN-LABEL "Situação"
+  HELP "Informe a Descrição da Situação do Pedido"
+  ORDER 10
+
+ADD FIELD "pds_codigo" OF "PedidoSituacao" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código Situação"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Código"
+  HELP "Informe o Código da Situação do Pedido"
+  ORDER 20
+
+ADD INDEX "Primario" ON "PedidoSituacao" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "pds_codigo" ASCENDING 
+
+ADD TABLE "Representante"
+  AREA "Schema Area"
+  LABEL "Representante"
+  DUMP-NAME "Representante"
+
+ADD FIELD "rep_codigo" OF "Representante" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "1"
+  LABEL "Id Representante"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Rep_ID"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "rep_nome" OF "Representante" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Nome do Representante"
+  POSITION 3
+  MAX-WIDTH 100
+  COLUMN-LABEL "Nome"
+  ORDER 20
+
+ADD FIELD "rep_tel" OF "Representante" AS integer 
+  FORMAT "99999999999"
+  INITIAL "0"
+  LABEL "Telefone do Representante"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Telefone"
+  ORDER 30
+
+ADD FIELD "rep_email" OF "Representante" AS character 
+  FORMAT "x(30)"
+  INITIAL ""
+  LABEL "Email"
+  POSITION 5
+  MAX-WIDTH 60
+  COLUMN-LABEL "Email"
+  ORDER 40
+
+ADD FIELD "rep_sit" OF "Representante" AS logical 
+  FORMAT "yes/no"
+  INITIAL "yes"
+  LABEL "Situação"
+  POSITION 6
+  MAX-WIDTH 1
+  COLUMN-LABEL "Situação"
+  ORDER 50
+
+ADD INDEX "rep_codigo" ON "Representante" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "rep_codigo" ASCENDING 
+
+ADD TABLE "TipoPagamento"
+  AREA "Schema Area"
+  LABEL "Tipos de Pagamentos"
+  DUMP-NAME "tipopagamento"
+
+ADD FIELD "tip_codigo" OF "TipoPagamento" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código Tipo Pagamento"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Tipo Pagamento"
+  HELP "Informe o Código do Tipo de Pagamento"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "mod_codigo" OF "TipoPagamento" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Modalidade"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "CodMod"
+  HELP "Informe o Código da Modalidade"
+  ORDER 20
+
+ADD FIELD "tip_descricao" OF "TipoPagamento" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Descrição do Tipo de Pagamento"
+  POSITION 4
+  MAX-WIDTH 100
+  COLUMN-LABEL "Descrição do Tipo Pagamento"
+  HELP "Informe a Descrição do Tipo de Pagamento"
+  ORDER 30
+
+ADD INDEX "Primario" ON "TipoPagamento" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "tip_codigo" ASCENDING 
+  INDEX-FIELD "mod_codigo" ASCENDING 
+
+ADD INDEX "modalidade" ON "TipoPagamento" 
+  AREA "Schema Area"
+  INDEX-FIELD "mod_codigo" ASCENDING 
+
+ADD TABLE "Transportadora"
+  AREA "Schema Area"
+  LABEL "Transportadora"
+  DUMP-NAME "transportadora"
+
+ADD FIELD "tsp_codigo" OF "Transportadora" AS integer 
+  FORMAT "zzz,zz9"
+  INITIAL "0"
+  LABEL "Código Transportadora"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Transportadora"
+  HELP "Informe o Código da Transportadora"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "tsp_nome" OF "Transportadora" AS character 
+  FORMAT "x(40)"
+  INITIAL ""
+  LABEL "Nome Fantasia da Transportadora"
+  POSITION 3
+  MAX-WIDTH 80
+  COLUMN-LABEL "Nome Transportadora"
+  HELP "Informe o Nome Fantasia da Transportadora"
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "tsp_cnpj" OF "Transportadora" AS character 
+  FORMAT "99.999.999/9999-99"
+  INITIAL ""
+  LABEL "CNPJ da Transportadora"
+  POSITION 4
+  MAX-WIDTH 36
+  COLUMN-LABEL "CNPJ"
+  HELP "Informe o CNPJ da Transportadora"
+  ORDER 30
+  MANDATORY
+
+ADD FIELD "tsp_logradouro" OF "Transportadora" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Logradouro da Transportadora"
+  POSITION 5
+  MAX-WIDTH 100
+  COLUMN-LABEL "Logradouro"
+  HELP "Informe o Logradouro da Transportadora"
+  ORDER 40
+  MANDATORY
+
+ADD FIELD "cep_codigo" OF "Transportadora" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "CEP da Transportadora"
+  POSITION 6
+  MAX-WIDTH 16
+  COLUMN-LABEL "CEP"
+  HELP "Informe o CEP da Transportadora"
+  ORDER 50
+  MANDATORY
+
+ADD FIELD "tsp_telefone" OF "Transportadora" AS character 
+  FORMAT "(999) 999-9999"
+  INITIAL ""
+  LABEL "Telefone da Transportadora"
+  POSITION 7
+  MAX-WIDTH 28
+  COLUMN-LABEL "Telefone Transportadora"
+  HELP "Informe o Telefone da Transportadora"
+  ORDER 60
+  MANDATORY
+
+ADD FIELD "tsp_inicio" OF "Transportadora" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Inicio da Prestação de Serviço"
+  POSITION 8
+  MAX-WIDTH 4
+  COLUMN-LABEL "Transportadora Serviço"
+  HELP "Informe o Inicio da Prestação de Serviço da Transportadora"
+  ORDER 70
+  MANDATORY
+
+ADD INDEX "Primario" ON "Transportadora" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "tsp_codigo" ASCENDING 
+
+ADD INDEX "Prestacao" ON "Transportadora" 
+  AREA "Schema Area"
+  INDEX-FIELD "tsp_codigo" ASCENDING 
+  INDEX-FIELD "tsp_inicio" DESCENDING 
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000037483
